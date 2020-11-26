@@ -1214,7 +1214,6 @@ document.getElementById("options").addEventListener(
 	requestAnimationFrame(render);
 	renderer.render(scene, camera);
 	controls.update();
-   
  };
  
  
