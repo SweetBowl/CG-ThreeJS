@@ -663,10 +663,11 @@ function generateGroundBlocks() {
 
                     // Generate a building / buildings with a random height parameter and add it / them to the scene:
 
-                    var buildingHeight = getRandomIntBetween(
-                        minBuildingHeight,
-                        maxBuildingHeight
-                    );
+                    var buildingHeight = (minBuildingHeight+maxBuildingHeight)/2;
+                    //     getRandomIntBetween(
+                    //     minBuildingHeight,
+                    //     maxBuildingHeight
+                    // );
 
                     var buildingWidth = curbWidth - blockMargin * 2;
 
@@ -801,7 +802,8 @@ var Tree = function (x, z) {
     this.components = [];
 
     // Generate a random height for our tree
-    var treeHeight = getRandomIntBetween(minTreeHeight, maxTreeHeight);
+    var treeHeight = (minTreeHeight+maxTreeHeight)/2;
+        // getRandomIntBetween(minTreeHeight, maxTreeHeight);
 
     trunkMesh = getBoxMesh(
         // Geometry parameters
@@ -967,13 +969,14 @@ function generateBuildingBlock(
     // If the building is tall or if we have less than 1 sub-division to generate, create a building
     if (isTall(geometryParameters.height) || numOfDivisions < 1) {
         // Generate a randomized maximum height deviation to use for our building
-        var maxHeightDeviation = generateBuildingHeightDeviation();
+        // var maxHeightDeviation = generateBuildingHeightDeviation();
 
         // Generate a random building height falling within our generated deviation
-        var buildingHeight = getRandomIntBetween(
-            geometryParameters.height - maxHeightDeviation,
-            geometryParameters.height + maxHeightDeviation
-        );
+        var buildingHeight = geometryParameters.height;
+        //     getRandomIntBetween(
+        //     geometryParameters.height - maxHeightDeviation,
+        //     geometryParameters.height + maxHeightDeviation
+        // );
 
         // Generate the geometry and position maps to use when constructing our building
 
