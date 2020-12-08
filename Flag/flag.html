@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>wave flag by webgl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            position: relative;
+            background: lightgrey;
+        }
+
+        #flag-canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+
+
 </head>
 <body>
-$END$
+<canvas id="flag-canvas">
+    你的浏览器不支持html5
+</canvas>
+
+<script id="vertex_shader" type="x-shader/x-vertex">
+uniform float u_Distance;
+attribute vec2 a_Position;
+varying vec2 v_UV;
+varying float v_Slope;
+
+float PI = 3.14159;
+float scale = 0.8;
+
+void main() {
+
+  float x = a_Position.x;
+  float y = a_Position.y;
+
+  float amplitude = 1.0 - scale; // 振幅
+  float period = 2.0;  // 周期
+  float waveLength = 2.0 * scale;
+
+  v_UV = (mat3(0.625,0,0, 0,0.625,0, 0.5,0.5,1) * vec3(x, y, 1.0)).xy;
+  y += amplitude * ( (x - (-scale)) / waveLength) * sin(2.0 * PI * (x - u_Distance));
+
+  float x2 = x - 0.001;
+  float y2 = a_Position.y + amplitude * ( (x2 - (-scale)) / waveLength) * sin(2.0 * PI * (x2 - u_Distance));
+
+  v_Slope = y - y2;
+  gl_Position = vec4(vec2(x, y), 0.0, 1.0);
+}
+
+
+</script>
+
+<script id="fragment_shader" type="x-shader/x-fragment">
+precision mediump float;
+uniform sampler2D u_Sampler;
+varying vec2 v_UV;
+varying float v_Slope;
+
+void main() {
+  vec4 color = texture2D( u_Sampler, v_UV );
+  if( v_Slope > 0.0 ) {
+    color = mix( color, vec4(0.0, 0.0, 0.0, 1.0), v_Slope * 300.0 );
+  }
+  if( v_Slope < 0.0 ) {
+    color = mix( color, vec4(1.0), abs(v_Slope) * 300.0 );
+  }
+  if(v_UV.x < 0.0 || v_UV.x > 1.0 || v_UV.y < 0.0 || v_UV.y > 1.0) {
+    color.a = 0.0;
+  }
+  gl_FragColor = color;
+}
+
+
+</script>
+
+<script src="./shaders.js"></script>
+<script src="./flag.js"></script>
 </body>
 </html>
+
