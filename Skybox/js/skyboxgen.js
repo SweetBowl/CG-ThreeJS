@@ -1,5 +1,6 @@
 let scene,camera,renderer;
 function generateScene(){
+    //初始化
     scene = new THREE.Scene();
     //fieldOfView, aspect(实际窗口纵横比), nearPlane, farPlane
     camera = new THREE.PerspectiveCamera(55,window.innerWidth/window.innerHeight,45,30000);
@@ -19,6 +20,8 @@ function generateScene(){
 
 function generateMaterial(){
     let materialArray = [];
+
+    //load Texture
     let texture_ft = new THREE.TextureLoader().load('meadow_ft.jpg');
     let texture_bk = new THREE.TextureLoader().load('meadow_bk.jpg');
     let texture_up = new THREE.TextureLoader().load( 'meadow_up.jpg');
@@ -26,6 +29,7 @@ function generateMaterial(){
     let texture_rt = new THREE.TextureLoader().load( 'meadow_rt.jpg');
     let texture_lf = new THREE.TextureLoader().load( 'meadow_lf.jpg');
 
+    //push texture to the material array
     materialArray.push(new THREE.MeshBasicMaterial({map:texture_ft}));
     materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
     materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));

@@ -1,4 +1,6 @@
 ## Procedural City / City Block Generator  
+### 12.09更新
+去掉了option和regenerate
 
 This is a relatively simple procedural city / city block generator built using the latest version of THREE.js (r102).
 
