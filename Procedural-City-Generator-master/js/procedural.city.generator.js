@@ -1168,16 +1168,16 @@ const colors = {
  }
  
  // Update the global city option variables to contain the user input specified within our html page
- function updateCityOptions() {
-   
-	this.gridSize = document.getElementById("grid_size").value;
-	this.blockSize = document.getElementById("block_size").value;
-	this.blockMargin = document.getElementById("block_margin").value;
-	this.roadWidth = document.getElementById("road_width").value;
-	this.maximumTreeDensity = document.getElementById("tree_density").value;
-   
- }
- 
+ // function updateCityOptions() {
+ //
+	// this.gridSize = document.getElementById("grid_size").value;
+	// this.blockSize = document.getElementById("block_size").value;
+	// this.blockMargin = document.getElementById("block_margin").value;
+	// this.roadWidth = document.getElementById("road_width").value;
+	// this.maximumTreeDensity = document.getElementById("tree_density").value;
+ //
+ // }
+ //
  // Remove the existing canvas and re-initialize the scene
  function reset() {
    
@@ -1190,24 +1190,24 @@ const colors = {
  
  // Whenever the regenerate button is clicked, update our city option variables and
  // regenerate the scene
- document.getElementById("regenerate").addEventListener(
-	"click",
-	function () {
-	   updateCityOptions();
-	   reset();
-	},
-	false
- );
+ // document.getElementById("regenerate").addEventListener(
+	// "click",
+	// function () {
+	//    updateCityOptions();
+	//    reset();
+	// },
+	// false
+ // );
 
  // This event handles our ability to toggle the visibility of the city options menu.
-document.getElementById("options").addEventListener(
-	"click",
-	function () {
-	   document.querySelector(".options").classList.toggle("hidden");
-	},
-	false
- );
- 
+// document.getElementById("options").addEventListener(
+// 	"click",
+// 	function () {
+// 	   document.querySelector(".options").classList.toggle("hidden");
+// 	},
+// 	false
+//  );
+//
  // This is our main animation loop
  var render = function () {
    
