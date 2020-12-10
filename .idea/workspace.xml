@@ -20,19 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Linecity_100/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/citydemo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/OrbitControls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/generateCity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/three.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/shoot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/three.module.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_bk.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_dn.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_ft.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_lf.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_rt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_up.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/assets/models/city.mtl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/assets/models/city.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/Detector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/controls/PointerLockControls.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/libs/dat.gui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/libs/stats.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/loaders/MTLLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/loaders/OBJLoader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/libs/chroma.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shootGame/lib/three.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlockPeopleDemo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/FlockPeopleDemo/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skybox/js/skyboxgen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Skybox/js/skyboxgen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shootGame/shoot.html" beforeDir="false" afterPath="$PROJECT_DIR$/shootGame/shoot.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +69,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Linecity_100/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/shootGame/lib/assets/models" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -75,13 +84,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Linecity_100/js" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/libs" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/js" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/css" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/assets/models" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/js" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/js/libs" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/js/controls" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/js/loaders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/shootGame/lib" />
+      <recent name="$PROJECT_DIR$/shootGame/lib/js/loaders" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
     </key>
   </component>
@@ -100,7 +111,7 @@
       <workItem from="1607244962950" duration="9173000" />
       <workItem from="1607391009034" duration="152000" />
       <workItem from="1607499044216" duration="55000" />
-      <workItem from="1607499143531" duration="3008000" />
+      <workItem from="1607499143531" duration="15905000" />
     </task>
     <servers />
   </component>

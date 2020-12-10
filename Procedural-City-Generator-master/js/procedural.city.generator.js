@@ -10,15 +10,18 @@ const colors = {
 	DARK_GREY: 0x888888,
 	WATER: 0x4b95de
  };
- 
+
+ // 更改控制
+
+var controls,camera,scene,renderer;
  // City attribute variables: the variables below control the properties of our generated city
  
  // The number of blocks to include in our grid in dimensional format (i.e. the value of 10 will
  // create a grid with 10 by 10 blocks)
- var gridSize = 15;
+ var gridSize = 10;
  
  // City road widths. Roads seperate our city grid blocks.
- var roadWidth = 20;
+ var roadWidth = 50;
  
  // The maximum 'density' value to use when generating trees for our park blocks
  var maximumTreeDensity = 50;
@@ -80,12 +83,13 @@ const colors = {
  const maxBuildingSliceDeviation = 20;
  
  // These are our city base heights
- const groundHeight = 30;
+ // 地基高度
+ const groundHeight = 20;
  const curbHeight = 1;
  
  // Tree properties
- const minTreeHeight = 4;
- const maxTreeHeight = 10;
+ const minTreeHeight = 5;
+ const maxTreeHeight = 15;
  
  // Maps used to hold boolean indicators which show whether our grid coordinates represent a
  // ground or building block.
@@ -99,7 +103,7 @@ const colors = {
  
  // Threshold value used to assign park / parking blocks. Any normalized ground block values falling between the
  // [0, parkThreshold] range are assigned to a park or parking block.
- const parkThreshold = 0.2;
+ const parkThreshold = 0.3;
  
  // Generate and return a hexidecimal string representation of the numeric input
  // i.e. 0 will get converted to "#000000"
@@ -187,6 +191,7 @@ const colors = {
  }
  
  // Generate the building scene and renderer
+ // 可通过这个函数更改camera初始位置等
  function generateScene() {
    
 	scene = new THREE.Scene();
@@ -213,7 +218,7 @@ const colors = {
 	document.body.appendChild(renderer.domElement);
  
 	// Initialize the frustum variables to use for the perspective camera
-	var fieldOfView = 60;
+	var fieldOfView = 45;
 	var aspect = window.innerWidth / window.innerHeight;
 	var nearPlane = 1;
 	var farPlane = 4000;
@@ -226,9 +231,10 @@ const colors = {
 	);
  
 	// Set the camera coordinates
-	var x_position = 800;
-	var y_position = 800;
-	var z_position = 800;
+	 //右手坐标系，y为竖直轴，x水平，z指向外
+	var x_position = 300;
+	var y_position = 1000;
+	var z_position = 300;
  
 	// Set the camera position in the world space.
 	camera.position.set(x_position, y_position, z_position);
@@ -244,8 +250,13 @@ const colors = {
 	// Set the damping factor / inertia
 	controls.dampingFactor = 0.25;
 	// Set the upper limit to how high we can orbit vertically to 90 degrees (PI radians / 2)
-	controls.maxPolarAngle = Math.PI / 2;
- 
+	 //调整 controls 的控制角度
+	controls.maxPolarAngle = Math.PI/2;
+
+	//调整控制的进远距离，以避免跳出天空盒
+	 controls.minDistance = 500;
+	 controls.maxDistance = 1200;
+	 controls.addEventListener('change',renderer);
 	// We want the resize function to be called on each window resize event
 	window.addEventListener("resize", resize, false);
    
@@ -535,6 +546,7 @@ const colors = {
  }
  
  // Generate the scene / city terrain
+ ////////// 生成城市地形//////////
  function generateCityTerrain() {
    
 	var streetHeight = 2 * curbHeight;
@@ -1157,7 +1169,42 @@ const colors = {
 	   }
 	}
  }
- 
+
+ // SkyBox
+// Generate skybox material
+function generateMaterial(boxGeometryParameters){
+	let materialArray = [];
+
+	//load Texture
+	let texture_ft = new THREE.TextureLoader().load('lib/skybox/meadow_ft.jpg');
+	let texture_bk = new THREE.TextureLoader().load('lib/skybox/meadow_bk.jpg');
+	let texture_up = new THREE.TextureLoader().load( 'lib/skybox/meadow_up.jpg');
+	let texture_dn = new THREE.TextureLoader().load( 'lib/skybox/meadow_dn.jpg');
+	let texture_rt = new THREE.TextureLoader().load( 'lib/skybox/meadow_rt.jpg');
+	let texture_lf = new THREE.TextureLoader().load( 'lib/skybox/meadow_lf.jpg');
+
+	//push texture to the material array
+	materialArray.push(new THREE.MeshBasicMaterial({map:texture_ft}));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+	materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+
+	//set the property of the material to THREE.backside
+	//to apply the texture to the “inside” of the cube.
+	for(let i = 0; i<6; i++){
+		materialArray[i].side = THREE.BackSide;
+	}
+	let skyboxGeo = new THREE.BoxGeometry(1500,1500,1500);
+	let skybox = new THREE.Mesh(skyboxGeo,materialArray);
+
+	skybox.position.y=300;
+	scene.add(skybox);
+}
+
+
+
  // Function called on window resize events.
  function resize() {
    
@@ -1213,7 +1260,7 @@ const colors = {
    
 	requestAnimationFrame(render);
 	renderer.render(scene, camera);
-	controls.update();
+//	controls.update();
  };
  
  
@@ -1222,6 +1269,7 @@ const colors = {
    
 	generateScene();
 	generateLighting();
+	generateMaterial()
 	generatePreceduralMaps();
 	generateCityTerrain();
 	generateGroundBlocks();
