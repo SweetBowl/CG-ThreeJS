@@ -7,7 +7,7 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Home</title>
+	<title>Cyberpunk 3077</title>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -40,11 +40,11 @@
 			});
 
 			const fov = 45;
-			const aspect = 2; // the canvas default
+			const aspect = window.innerWidth / window.innerHeight;
 			const near = 0.1;
 			const far = 100;
 			const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-			camera.position.set(0, 10, 20);
+			camera.position.set(0, 0, 0);
 
 			const controls = new THREE.PointerLockControls(camera);
 			controls.getObject().position.y = 0;
@@ -54,10 +54,45 @@
 			// controls.update();
 
 			const scene = new THREE.Scene();
-			scene.background = new THREE.Color('#75bbfd');
+
+			// SkyBox
+			// Generate skybox material
+			let materialArray = [];
+
+			//load Texture
+			let texture_ft = new THREE.TextureLoader().load('lib/skybox/meadow_ft.jpg');
+			let texture_bk = new THREE.TextureLoader().load('lib/skybox/meadow_bk.jpg');
+			let texture_up = new THREE.TextureLoader().load( 'lib/skybox/meadow_up.jpg');
+			let texture_dn = new THREE.TextureLoader().load( 'lib/skybox/meadow_dn.jpg');
+			let texture_rt = new THREE.TextureLoader().load( 'lib/skybox/meadow_rt.jpg');
+			let texture_lf = new THREE.TextureLoader().load( 'lib/skybox/meadow_lf.jpg');
+
+			//push texture to the material array
+			materialArray.push(new THREE.MeshBasicMaterial({map:texture_ft}));
+			materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+			materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+			materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+			materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+			materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+
+			//set the property of the material to THREE.backside
+			//to apply the texture to the “inside” of the cube.
+			for(let i = 0; i<6; i++){
+				materialArray[i].side = THREE.BackSide;
+			}
+			let skyboxGeo = new THREE.BoxGeometry(2500,2500,2500);
+			let skybox = new THREE.Mesh(skyboxGeo,materialArray);
+
+			skybox.position.y=0;
+			skybox.position.z=-430;
+			skybox.position.x=-500;
+			scene.add(skybox);
+
+			// scene.background = new THREE.Color('#75bbfd');
 
 			var blocker = document.getElementsByClassName('global_wr')[0];
 			var instructions = document.getElementById('canvas');
+
 			// 移动
 			{
 				scene.add(controls.getObject());
@@ -80,7 +115,7 @@
 				var direction = new THREE.Vector3(); //移动的方向变量
 				var rotation = new THREE.Vector3(); //当前的相机朝向
 
-				var speed = 2000; //控制器移动速度
+				var speed = 4000; //控制器移动速度
 				var upSpeed = 200; //控制跳起时的速度
 
 				//辅助箭头
@@ -344,7 +379,7 @@
 
 						// update the Trackball controls to handle the new size
 
-						// controls.maxDistance = boxSize * 10;
+						// controls.maxDistance = boxSize;
 						// controls.target.copy(boxCenter);
 						// controls.update();
 					});
@@ -365,6 +400,7 @@
 			const carPosition = new THREE.Vector3();
 			const carTarget = new THREE.Vector3();
 
+			// render
 			function render(time) {
 				time *= 0.001; // convert to seconds
 

@@ -20,7 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/small_city-master/js/PointerLockControls.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_bk.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_dn.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_ft.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_lf.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_rt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/skybox/meadow_up.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
@@ -50,7 +55,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/small_city-master/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/small_city-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -70,8 +75,8 @@
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/small_city-master/js" />
       <recent name="$PROJECT_DIR$/small_city-master" />
+      <recent name="$PROJECT_DIR$/small_city-master/js" />
       <recent name="$PROJECT_DIR$/Procedural-City-Generator-master/js" />
       <recent name="$PROJECT_DIR$/shootGame/lib/assets/models" />
       <recent name="$PROJECT_DIR$/shootGame/lib/js" />
@@ -94,7 +99,7 @@
       <workItem from="1607499044216" duration="55000" />
       <workItem from="1607499143531" duration="21969000" />
       <workItem from="1607776431519" duration="2408000" />
-      <workItem from="1608099611990" duration="3598000" />
+      <workItem from="1608099611990" duration="7402000" />
     </task>
     <servers />
   </component>
