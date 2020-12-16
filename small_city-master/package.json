@@ -1,0 +1,53 @@
+{
+  "name": "pattern",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "VS",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "del": "^3.0.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "gulp": "4.0.0",
+    "gulp-autoprefixer": "4.1.0",
+    "gulp-clean-css": "3.9.2",
+    "gulp-concat": "2.6.1",
+    "gulp-debug": "3.2.0",
+    "gulp-if": "2.0.2",
+    "gulp-imagemin": "4.1.0",
+    "gulp-notify": "3.2.0",
+    "gulp-plumber": "1.2.0",
+    "gulp-rename": "1.2.2",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sass": "3.1.0",
+    "gulp-sourcemaps": "2.6.4",
+    "gulp-uglify": "3.0.0",
+    "husky": "^2.2.0",
+    "stream-combiner2": "1.1.1",
+    "stylelint": "^9.10.1",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.5.4"
+  },
+  "dependencies": {
+    "directory-exists": "^1.0.2",
+    "stylelint-config-airbnb": "0.0.0"
+  },
+  "extends": "stylelint-config-airbnb",
+  "rules": {
+    "indentation": "tab"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "node_modules/.bin/eslint . --max-warnings=0",
+      "pre-push": "node_modules/.bin/eslint . --max-warnings=0"
+    }
+  }
+}

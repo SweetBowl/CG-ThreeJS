@@ -14,6 +14,8 @@
     var eleSize = 0
     var vertexCount = 0
 
+
+    //载入shader着色器的代码，我写在html里面了
     // ShaderUtil.getSrcFromUrl('vertexShader.vert', function (src) {
     //   vShaderSrc = src
     //   onAllLoaded()
@@ -106,6 +108,7 @@
 
     }
 
+    //创建顶点缓冲区
     function createVerticesBuffer () {
         var vertices = []
         var x
@@ -123,6 +126,7 @@
         return buffer
     }
 
+    //创建纹理对象
     function createTexture () {
         var texture = gl.createTexture()
 

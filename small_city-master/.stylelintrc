@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "rules": {
+    "block-no-empty": null,
+    "unit-whitelist": ["em", "px", "%", "dppx"],
+    "no-descending-specificity": false,
+    "max-empty-lines": 2,
+    "indentation": [1, "tab", {
+      "except": ["value"]
+    }],
+    "rule-empty-line-before": [ "always", {
+      "except": ["inline-block"],
+      "ignore": ["after-comment"]
+    } ]
+  }
+}

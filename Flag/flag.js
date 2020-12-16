@@ -157,4 +157,3 @@ var Shaders = function (gl, vShaderSrc, fShaderSrc) {
     }
 
 }
-

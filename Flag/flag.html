@@ -50,7 +50,7 @@ void main() {
   float y = a_Position.y;
 
   float amplitude = 1.0 - scale; // 振幅
-  float period = 2.0;  // 周期
+  float period = 2.0;            // 周期
   float waveLength = 2.0 * scale;
 
   v_UV = (mat3(0.625,0,0, 0,0.625,0, 0.5,0.5,1) * vec3(x, y, 1.0)).xy;
@@ -93,4 +93,3 @@ void main() {
 <script src="./flag.js"></script>
 </body>
 </html>
-

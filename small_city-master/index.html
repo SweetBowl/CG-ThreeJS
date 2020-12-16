@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<title>Home</title>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<div class="global_wr">
+		<canvas id="canvas"></canvas>
+	</div>
+	<!-- global_wr end -->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/three.min.js"></script>
+	<script src="js/OrbitControls.js"></script>
+	<script src="js/GLTFLoader.js"></script>
+	<script src="js/dat.gui.min.js"></script>
+	<script src="js/PointerLockControls.js"></script>
+
+	<script>
+		'use strict';
+
+		/* global THREE */
+
+		function main() {
+			const canvas = document.querySelector('#canvas');
+			const renderer = new THREE.WebGLRenderer({
+				canvas
+			});
+
+			const fov = 45;
+			const aspect = 2; // the canvas default
+			const near = 0.1;
+			const far = 100;
+			const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+			camera.position.set(0, 10, 20);
+
+			const controls = new THREE.PointerLockControls(camera);
+			controls.getObject().position.y = 0;
+			controls.getObject().position.x = 50000;
+			controls.getObject().position.z = 2000;
+
+			// controls.update();
+
+			const scene = new THREE.Scene();
+			scene.background = new THREE.Color('#75bbfd');
+
+			var blocker = document.getElementsByClassName('global_wr')[0];
+			var instructions = document.getElementById('canvas');
+			// 移动
+			{
+				scene.add(controls.getObject());
+				var clock = new THREE.Clock();
+				//移动相关的变量
+				var controlsEnabled = true;
+				var moveForward = false;
+				var moveBackward = false;
+				var moveLeft = false;
+				var moveRight = false;
+				var canJump = false;
+				var spaceUp = true; //处理一直按着空格连续跳的问题
+
+				//声明射线
+				var upRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, 1, 0), 0, 10);
+				var horizontalRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(), 0, 10);
+				var downRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(0, -1, 0), 0, 10);
+
+				var velocity = new THREE.Vector3(); //移动速度变量
+				var direction = new THREE.Vector3(); //移动的方向变量
+				var rotation = new THREE.Vector3(); //当前的相机朝向
+
+				var speed = 2000; //控制器移动速度
+				var upSpeed = 200; //控制跳起时的速度
+
+				//辅助箭头
+				var up, horizontal, down, group;
+
+
+				var onKeyDown = function (event) {
+					switch (event.keyCode) {
+						case 38: // up
+						case 87: // w
+							moveForward = true;
+							break;
+						case 37: // left
+						case 65: // a
+							moveLeft = true;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = true;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = true;
+							break;
+						case 32: // space
+							if (canJump && spaceUp) velocity.y += upSpeed;
+							canJump = false;
+							spaceUp = false;
+							break;
+					}
+				};
+				var onKeyUp = function (event) {
+					switch (event.keyCode) {
+						case 38: // up
+						case 87: // w
+							moveForward = false;
+							break;
+						case 37: // left
+						case 65: // a
+							moveLeft = false;
+							break;
+						case 40: // down
+						case 83: // s
+							moveBackward = false;
+							break;
+						case 39: // right
+						case 68: // d
+							moveRight = false;
+							break;
+						case 32: // space
+							spaceUp = true;
+							break;
+					}
+				};
+				document.addEventListener('keydown', onKeyDown, false);
+				document.addEventListener('keyup', onKeyUp, false);
+
+
+				//添加辅助线
+				group = new THREE.Group();
+				up = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(), 10, 0x00ff00);
+				horizontal = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 10, 0x00ffff);
+				down = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(), 10, 0xffff00);
+
+				group.add(up);
+				group.add(horizontal);
+				group.add(down);
+
+
+			}
+
+			
+			
+			{
+				const planeSize = 40;
+
+				const loader = new THREE.TextureLoader();
+				const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				texture.magFilter = THREE.NearestFilter;
+				const repeats = planeSize / 2;
+				texture.repeat.set(repeats, repeats);
+
+				const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+				const planeMat = new THREE.MeshPhongMaterial({
+					map: texture,
+					side: THREE.DoubleSide,
+				});
+				const mesh = new THREE.Mesh(planeGeo, planeMat);
+				mesh.rotation.x = Math.PI * -.5;
+				scene.add(mesh);
+			}
+			
+			{
+				const skyColor = 0xB1E1FF; // light blue
+				const groundColor = 0xB97A20; // brownish orange
+				const intensity = 1;
+				const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+				scene.add(light);
+			}
+
+			{
+				const color = 0xFFFFFF;
+				const intensity = .8;
+				const light = new THREE.DirectionalLight(color, intensity);
+				light.position.set(15, 10, 2);
+				light.castShadow = true;
+				light.position.set(-250, 800, -850);
+				light.target.position.set(-550, 40, -450);
+
+				light.shadow.bias = -0.004;
+				light.shadow.mapSize.width = 2048;
+				light.shadow.mapSize.height = 2048;
+				const cam = light.shadow.camera;
+				cam.near = 1;
+				cam.far = 2000;
+				cam.left = -1500;
+				cam.right = 1500;
+				cam.top = 1500;
+				cam.bottom = -1500;
+				scene.add(light);
+				scene.add(light.target);
+			}
+
+			function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+				const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+				const halfFovY = THREE.Math.degToRad(camera.fov * .5);
+				const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+				// compute a unit vector that points in the direction the camera is now
+				// in the xz plane from the center of the box
+				const direction = (new THREE.Vector3())
+					.subVectors(camera.position, boxCenter)
+					.multiply(new THREE.Vector3(1, 0, 1))
+					.normalize();
+
+				// move the camera to a position distance units way from the center
+				// in whatever direction the camera was from the center already
+				camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+
+				// pick some near and far values for the frustum that
+				// will contain the box.
+				camera.near = boxSize / 100;
+				camera.far = boxSize * 100;
+
+				camera.updateProjectionMatrix();
+
+				// point the camera to look at the center of the box
+				camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+			}
+
+			let curve;
+			let curveObject; {
+				const controlPoints = [
+					[1.118281, 5.115846, -3.681386],
+					[3.948875, 5.115846, -3.641834],
+					[3.960072, 5.115846, -0.240352],
+					[3.985447, 5.115846, 4.585005],
+					[-3.793631, 5.115846, 4.585006],
+					[-3.826839, 5.115846, -14.736200],
+					[-14.542292, 5.115846, -14.765865],
+					[-14.520929, 5.115846, -3.627002],
+					[-5.452815, 5.115846, -3.634418],
+					[-5.467251, 5.115846, 4.549161],
+					[-13.266233, 5.115846, 4.567083],
+					[-13.250067, 5.115846, -13.499271],
+					[4.081842, 5.115846, -13.435463],
+					[4.125436, 5.115846, -5.334928],
+					[-14.521364, 5.115846, -5.239871],
+					[-14.510466, 5.115846, 5.486727],
+					[5.745666, 5.115846, 5.510492],
+					[5.787942, 5.115846, -14.728308],
+					[-5.423720, 5.115846, -14.761919],
+					[-5.373599, 5.115846, -3.704133],
+					[1.004861, 5.115846, -3.641834],
+				];
+				const p0 = new THREE.Vector3();
+				const p1 = new THREE.Vector3();
+				curve = new THREE.CatmullRomCurve3(
+					controlPoints.map((p, ndx) => {
+						p0.set(...p);
+						p1.set(...controlPoints[(ndx + 1) % controlPoints.length]);
+						return [
+							(new THREE.Vector3()).copy(p0),
+							(new THREE.Vector3()).lerpVectors(p0, p1, 0.1),
+							(new THREE.Vector3()).lerpVectors(p0, p1, 0.9),
+						];
+					}).flat(),
+					true,
+				); {
+					const points = curve.getPoints(250);
+					const geometry = new THREE.BufferGeometry().setFromPoints(points);
+					const material = new THREE.LineBasicMaterial({
+						color: 0xff0000
+					});
+					curveObject = new THREE.Line(geometry, material);
+					curveObject.scale.set(100, 100, 100);
+					curveObject.position.y = -621;
+					curveObject.visible = false;
+					material.depthTest = false;
+					curveObject.renderOrder = 1;
+					scene.add(curveObject);
+				}
+			}
+
+			const cars = []; {
+				const gltfLoader = new THREE.GLTFLoader();
+				gltfLoader.load(
+					'https://threejsfundamentals.org/threejs/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf',
+					(gltf) => {
+						const root = gltf.scene;
+						scene.add(root);
+
+						root.traverse((obj) => {
+							if (obj.castShadow !== undefined) {
+								obj.castShadow = true;
+								obj.receiveShadow = true;
+							}
+						});
+
+						const loadedCars = root.getObjectByName('Cars');
+						const fixes = [{
+								prefix: 'Car_08',
+								y: 0,
+								rot: [Math.PI * .5, 0, Math.PI * .5],
+							},
+							{
+								prefix: 'CAR_03',
+								y: 33,
+								rot: [0, Math.PI, 0],
+							},
+							{
+								prefix: 'Car_04',
+								y: 40,
+								rot: [0, Math.PI, 0],
+							},
+						];
+
+						root.updateMatrixWorld();
+						for (const car of loadedCars.children.slice()) {
+							const fix = fixes.find(fix => car.name.startsWith(fix.prefix));
+							const obj = new THREE.Object3D();
+							car.position.set(0, fix.y, 0);
+							car.rotation.set(...fix.rot);
+							obj.add(car);
+							scene.add(obj);
+							cars.push(obj);
+						}
+
+						// compute the box that contains all the stuff
+						// from root and below
+						const box = new THREE.Box3().setFromObject(root);
+
+						const boxSize = box.getSize(new THREE.Vector3()).length();
+						const boxCenter = box.getCenter(new THREE.Vector3());
+
+						// set the camera to frame the box
+						frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
+
+						// update the Trackball controls to handle the new size
+
+						// controls.maxDistance = boxSize * 10;
+						// controls.target.copy(boxCenter);
+						// controls.update();
+					});
+			}
+
+			function resizeRendererToDisplaySize(renderer) {
+				const canvas = renderer.domElement;
+				const width = canvas.clientWidth;
+				const height = canvas.clientHeight;
+				const needResize = canvas.width !== width || canvas.height !== height;
+				if (needResize) {
+					renderer.setSize(width, height, false);
+				}
+				return needResize;
+			}
+
+			// create 2 Vector3s we can use for path calculations
+			const carPosition = new THREE.Vector3();
+			const carTarget = new THREE.Vector3();
+
+			function render(time) {
+				time *= 0.001; // convert to seconds
+
+				if (resizeRendererToDisplaySize(renderer)) {
+					const canvas = renderer.domElement;
+					camera.aspect = canvas.clientWidth / canvas.clientHeight;
+					camera.updateProjectionMatrix();
+				}
+
+				{
+					const pathTime = time * .01;
+					const targetOffset = 0.01;
+					cars.forEach((car, ndx) => {
+						// a number between 0 and 1 to evenly space the cars
+						const u = pathTime + ndx / cars.length;
+
+						// get the first point
+						curve.getPointAt(u % 1, carPosition);
+						carPosition.applyMatrix4(curveObject.matrixWorld);
+
+						// get a second point slightly further down the curve
+						curve.getPointAt((u + targetOffset) % 1, carTarget);
+						carTarget.applyMatrix4(curveObject.matrixWorld);
+
+						// put the car at the first point (temporarily)
+						car.position.copy(carPosition);
+						// point the car the second point
+						car.lookAt(carTarget);
+
+						// put the car between the 2 points
+						car.position.lerpVectors(carPosition, carTarget, 0.5);
+					});
+				}
+				// walk
+				{
+					if (controlsEnabled === true) {
+						//获取到控制器对象
+						var control = controls.getObject();
+						//获取刷新时间
+						var delta = clock.getDelta();
+
+						//velocity每次的速度，为了保证有过渡
+						velocity.x -= velocity.x * 10.0 * delta;
+						velocity.z -= velocity.z * 10.0 * delta;
+						velocity.y -= 9.8 * 100.0 * delta; // 默认下降的速度
+
+						//获取当前按键的方向并获取朝哪个方向移动
+						direction.z = Number(moveForward) - Number(moveBackward);
+						direction.x = Number(moveLeft) - Number(moveRight);
+						//将法向量的值归一化
+						direction.normalize();
+
+						group.position.set(control.position.x, control.position.y, control.position.z);
+
+						//判断是否接触到了模型
+						rotation.copy(control.getWorldDirection().multiply(new THREE.Vector3(-1, 0, -1)));
+
+						//判断鼠标按下的方向
+						var m = new THREE.Matrix4();
+						if (direction.z > 0) {
+							if (direction.x > 0) {
+								m.makeRotationY(Math.PI / 4);
+							} else if (direction.x < 0) {
+								m.makeRotationY(-Math.PI / 4);
+							} else {
+								m.makeRotationY(0);
+							}
+						} else if (direction.z < 0) {
+							if (direction.x > 0) {
+								m.makeRotationY(Math.PI / 4 * 3);
+							} else if (direction.x < 0) {
+								m.makeRotationY(-Math.PI / 4 * 3);
+							} else {
+								m.makeRotationY(Math.PI);
+							}
+						} else {
+							if (direction.x > 0) {
+								m.makeRotationY(Math.PI / 2);
+							} else if (direction.x < 0) {
+								m.makeRotationY(-Math.PI / 2);
+							}
+						}
+						//给向量使用变换矩阵
+						rotation.applyMatrix4(m);
+						horizontal.setDirection(rotation);
+						horizontalRaycaster.set(control.position, rotation);
+
+						var horizontalIntersections = horizontalRaycaster.intersectObjects(scene.children, true);
+						var horOnObject = horizontalIntersections.length > 0;
+
+						//判断移动方向修改速度方向
+						if (!horOnObject) {
+							if (moveForward || moveBackward) velocity.z -= direction.z * speed * delta;
+							if (moveLeft || moveRight) velocity.x -= direction.x * speed * delta;
+						}
+
+						//复制相机的位置
+						horizontalRaycaster.ray.origin.copy(control.position);
+						//获取相机靠左10的位置
+						// horizontalRaycaster.ray.origin.x -= 10;
+			
+						var intersections = horizontalRaycaster.intersectObjects(scene.children, true);
+						var xObject = intersections.length > 0;
+						//判断是否发生碰撞
+						if (xObject === true) {
+							// velocity.y = Math.max(0, velocity.y);
+							// velocity.x = 0;
+							console.log("碰撞！");
+
+
+						}
+						//根据速度值移动控制器
+						control.translateX(velocity.x * delta);
+						control.translateY(velocity.y * delta);
+						control.translateZ(velocity.z * delta);
+
+						//保证控制器的y轴在10以上
+						if (control.position.y < 10) {
+							velocity.y = 0;
+							control.position.y = 10;
+							canJump = true;
+						}
+					}
+
+				}
+				renderer.render(scene, camera);
+
+				requestAnimationFrame(render);
+			}
+
+			requestAnimationFrame(render);
+		}
+
+		main();
+	</script>
+
+</body>
+
+</html>

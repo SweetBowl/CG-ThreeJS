@@ -1,0 +1,14 @@
+{
+  "name": "template",
+  "description": "temp",
+  "main": "index.js",
+  "authors": [
+    "VS"
+  ],
+  "license": "ISC",
+  "homepage": "/",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
