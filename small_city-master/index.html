@@ -8,6 +8,43 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<title>Cyberpunk 3077</title>
+
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			height: 100%;
+		}
+
+		canvas {
+			display: block;
+		}
+		#blocker {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+		#instructions {
+			width: 100%;
+			height: 100%;
+			display: -webkit-box;
+			display: -moz-box;
+			/*display: box;*/
+			-webkit-box-orient: horizontal;
+			-moz-box-orient: horizontal;
+			box-orient: horizontal;
+			-webkit-box-pack: center;
+			-moz-box-pack: center;
+			box-pack: center;
+			-webkit-box-align: center;
+			-moz-box-align: center;
+			box-align: center;
+			color: #ffffff;
+			text-align: center;
+			cursor: pointer;
+		}
+
+	</style>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -16,21 +53,22 @@
 </head>
 
 <body>
-<!--	<div id="blocker">-->
+	<div id="blocker">
 
-<!--		<div id="instructions">-->
-<!--		<span style="font-size:40px">Cick Screen</span>-->
-<!--	&lt;!&ndash;		<br />&ndash;&gt;-->
-<!--	&lt;!&ndash;		<br />&ndash;&gt;-->
-<!--	&lt;!&ndash;		(W, A, S, D = 移动, SPACE = 跳跃, MOUSE = 移动视角)&ndash;&gt;-->
-<!--		</div>-->
+		<div id="instructions">
+		<span style="font-size:40px">Cick the screen</span>
+			<br />
+			<span style="font-size:40px">to Explore our city!</span>
+			<br />
+			<br />
+			(W, A, S, D = 移动, SPACE = 跳跃, MOUSE = 移动视角)
+		</div>
 
-<!--	</div>-->
+	</div>
 
 	<div class="global_wr">
 		<canvas id="canvas"></canvas>
 	</div>
-	<!-- global_wr end -->
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/three.min.js"></script>
@@ -39,6 +77,7 @@
 	<script src="js/dat.gui.min.js"></script>
 	<script src="js/PointerLockControls.js"></script>
 	<script src="js/flag.js"></script>
+	<script src="js/Detector.js"></script>
 
 	<script>
 		'use strict';
@@ -115,8 +154,52 @@
 
 			// scene.background = new THREE.Color('#75bbfd');
 
-			var blocker = document.getElementsByClassName('global_wr')[0];
-			var instructions = document.getElementById('canvas');
+			// var blocker = document.getElementsByClassName('global_wr')[0];
+			// var instructions = document.getElementById('canvas');
+			var blocker = document.getElementById( 'blocker' );
+			var instructions = document.getElementById( 'instructions' );
+
+
+			//锁定鼠标
+			function launchFullScreen(element) {
+			}
+
+			var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+			if ( havePointerLock ) {
+				var element = document.body;
+				var pointerlockchange = function ( event ) {
+					if ( document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
+						controlsEnabled = true;
+						controls.enabled = true;
+						blocker.style.display = 'none';
+					} else {
+						controls.enabled = false;
+						blocker.style.display = 'block';
+						instructions.style.display = '';
+					}
+				};
+				var pointerlockerror = function ( event ) {
+					instructions.style.display = '';
+				};
+				// 监听变动事件
+				document.addEventListener( 'pointerlockchange', pointerlockchange, false );
+				document.addEventListener( 'mozpointerlockchange', pointerlockchange, false );
+				document.addEventListener( 'webkitpointerlockchange', pointerlockchange, false );
+				document.addEventListener( 'pointerlockerror', pointerlockerror, false );
+				document.addEventListener( 'mozpointerlockerror', pointerlockerror, false );
+				document.addEventListener( 'webkitpointerlockerror', pointerlockerror, false );
+				instructions.addEventListener( 'click', function ( event ) {
+					instructions.style.display = 'none';
+					//全屏
+					launchFullScreen(renderer.domElement);
+					// 锁定鼠标光标
+					element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+					element.requestPointerLock();
+				}, false );
+			}
+			else {
+				instructions.innerHTML = '你的浏览器不支持相关操作，请更换浏览器';
+			}
 
 			// 移动
 			{
@@ -208,8 +291,6 @@
 				group.add(up);
 				group.add(horizontal);
 				group.add(down);
-
-
 			}
 
 			// 旗帜
@@ -670,9 +751,8 @@
 						var xObject = intersections.length > 0;
 						//判断是否发生碰撞
 						if (xObject === true) {
-
-							velocity.x = Math.max(0, velocity.x);
-							velocity.z = 0;//停止运动
+							// velocity.x = Math.max(0, velocity.x);
+							velocity.z = Math.max(0, velocity.z);//停止运动
 							console.log("碰撞！");
 						}
 						//根据速度值移动控制器

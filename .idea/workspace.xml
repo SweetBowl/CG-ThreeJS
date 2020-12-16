@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/small_city-master/js/Detector.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +51,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/small_city-master/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/small_city-master/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -64,15 +66,15 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/small_city-master/js" />
       <recent name="$PROJECT_DIR$/small_city-master/lib" />
       <recent name="$PROJECT_DIR$/Linecity_100/js" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/libs" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/js" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/css" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -91,7 +93,7 @@
       <workItem from="1607391009034" duration="152000" />
       <workItem from="1607499044216" duration="55000" />
       <workItem from="1607499143531" duration="3008000" />
-      <workItem from="1608115018997" duration="4363000" />
+      <workItem from="1608115018997" duration="8931000" />
     </task>
     <servers />
   </component>
@@ -111,11 +113,16 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" width="1440" height="900" key="dock-window-1" timestamp="1608119841560">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1608121370333">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608121370333" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1" timestamp="1608124577615">
+      <screen x="1440" y="0" width="1194" height="756" />
     </state>
     <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1608119841560" />
-    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608116617628" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608124577615" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.23.1194.733/0.23.1440.877@0.23.1440.877" timestamp="1608124487552" />
     <state x="501" y="126" width="597" height="735" key="find.popup" timestamp="1606381661161">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
