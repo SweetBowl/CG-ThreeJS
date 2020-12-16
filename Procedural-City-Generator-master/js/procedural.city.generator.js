@@ -14,6 +14,37 @@ const colors = {
  // 更改控制
 
 var controls,camera,scene,renderer;
+var clock = new THREE.Clock();
+
+//是否锁定页面的相关
+var blocker = document.getElementById( 'blocker' );
+var instructions = document.getElementById( 'instructions' );
+
+
+//移动相关的变量
+var controlsEnabled = false;
+var moveForward = false;
+var moveBackward = false;
+var moveLeft = false;
+var moveRight = false;
+var canJump = false;
+
+// Do not need jump
+var spaceUp = true; //处理一直按着空格连续跳的问题
+
+//声明射线
+var upRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3( 0, 1, 0), 0, 10);
+var horizontalRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3(), 0, 10);
+var downRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3( 0, -1, 0), 0, 10);
+
+var velocity = new THREE.Vector3(); //移动速度变量
+var direction = new THREE.Vector3(); //移动的方向变量
+var rotation = new THREE.Vector3(); //当前的相机朝向
+
+var speed = 500; //控制器移动速度
+
+var upSpeed = 200; //控制跳起时的速度
+
  // City attribute variables: the variables below control the properties of our generated city
  
  // The number of blocks to include in our grid in dimensional format (i.e. the value of 10 will
@@ -242,26 +273,124 @@ var controls,camera,scene,renderer;
 	// Rotate the camera to face the point / vector ( x, y, z ) in world space.
 	camera.lookAt(new THREE.Vector3(0, 0, 0));
  
-	// Use orbit controls, which allow the camera to orbit around a target.
-	var controls = new THREE.OrbitControls(camera, renderer.domElement);
- 
-	// Enable damping (inertia), which can be used to give a sense of weight to the controls.
-	controls.enableDamping = true;
-	// Set the damping factor / inertia
-	controls.dampingFactor = 0.25;
-	// Set the upper limit to how high we can orbit vertically to 90 degrees (PI radians / 2)
-	 //调整 controls 的控制角度
-	controls.maxPolarAngle = Math.PI/2;
-
-	//调整控制的进远距离，以避免跳出天空盒
-	 controls.minDistance = 500;
-	 controls.maxDistance = 1200;
-	 controls.addEventListener('change',renderer);
-	// We want the resize function to be called on each window resize event
-	window.addEventListener("resize", resize, false);
+	// // Use orbit controls, which allow the camera to orbit around a target.
+	// var controls = new THREE.OrbitControls(camera, renderer.domElement);
+	//
+	// // Enable damping (inertia), which can be used to give a sense of weight to the controls.
+	// controls.enableDamping = true;
+	// // Set the damping factor / inertia
+	// controls.dampingFactor = 0.25;
+	// // Set the upper limit to how high we can orbit vertically to 90 degrees (PI radians / 2)
+	//  //调整 controls 的控制角度
+	// controls.maxPolarAngle = Math.PI/2;
+	//
+	// //调整控制的进远距离，以避免跳出天空盒
+	//  controls.minDistance = 500;
+	//  controls.maxDistance = 1200;
+	//  controls.addEventListener('change',renderer);
+	// // We want the resize function to be called on each window resize event
+	 window.addEventListener("resize", resize, false);
    
  }
- 
+
+ function initControls(){
+
+	 controls = new THREE.PointerLockControls( camera );
+	 controls.getObject().position.y = 50;
+        controls.getObject().position.x = 100;
+	 scene.add( controls.getObject() );
+
+	 var onKeyDown = function ( event ) {
+		 switch ( event.keyCode ) {
+			 case 38: // up
+			 case 87: // w
+				 moveForward = true;
+				 break;
+			 case 37: // left
+			 case 65: // a
+				 moveLeft = true; break;
+			 case 40: // down
+			 case 83: // s
+				 moveBackward = true;
+				 break;
+			 case 39: // right
+			 case 68: // d
+				 moveRight = true;
+				 break;
+			 case 32: // space
+				 if ( canJump && spaceUp ) velocity.y += upSpeed;
+				 canJump = false;
+				 spaceUp = false;
+				 break;
+		 }
+	 };
+	 var onKeyUp = function ( event ) {
+		 switch( event.keyCode ) {
+			 case 38: // up
+			 case 87: // w
+				 moveForward = false;
+				 break;
+			 case 37: // left
+			 case 65: // a
+				 moveLeft = false;
+				 break;
+			 case 40: // down
+			 case 83: // s
+				 moveBackward = false;
+				 break;
+			 case 39: // right
+			 case 68: // d
+				 moveRight = false;
+				 break;
+			 case 32: // space
+				 spaceUp = true;
+				 break;
+		 }
+	 };
+	 document.addEventListener( 'keydown', onKeyDown, false );
+	 document.addEventListener( 'keyup', onKeyUp, false );
+ }
+
+function initPointerLock() {
+	//实现鼠标锁定的教程地址 http://www.html5rocks.com/en/tutorials/pointerlock/intro/
+	var havePointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
+	if ( havePointerLock ) {
+		var element = document.body;
+		var pointerlockchange = function ( event ) {
+			if ( document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element ) {
+				controlsEnabled = true;
+				controls.enabled = true;
+				blocker.style.display = 'none';
+			} else {
+				controls.enabled = false;
+				blocker.style.display = 'block';
+				instructions.style.display = '';
+			}
+		};
+		var pointerlockerror = function ( event ) {
+			instructions.style.display = '';
+		};
+		// 监听变动事件
+		document.addEventListener( 'pointerlockchange', pointerlockchange, false );
+		document.addEventListener( 'mozpointerlockchange', pointerlockchange, false );
+		document.addEventListener( 'webkitpointerlockchange', pointerlockchange, false );
+		document.addEventListener( 'pointerlockerror', pointerlockerror, false );
+		document.addEventListener( 'mozpointerlockerror', pointerlockerror, false );
+		document.addEventListener( 'webkitpointerlockerror', pointerlockerror, false );
+		instructions.addEventListener( 'click', function ( event ) {
+			instructions.style.display = 'none';
+			//全屏
+			launchFullScreen(renderer.domElement);
+			// 锁定鼠标光标
+			element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
+			element.requestPointerLock();
+		}, false );
+	}
+	else {
+		instructions.innerHTML = '你的浏览器不支持相关操作，请更换浏览器';
+	}
+}
+
  function generateLighting() {
    
 	// Variables used to create the hemisphere light
@@ -1256,13 +1385,118 @@ function generateMaterial(boxGeometryParameters){
 //  );
 //
  // This is our main animation loop
- var render = function () {
-   
-	requestAnimationFrame(render);
-	renderer.render(scene, camera);
-//	controls.update();
- };
- 
+//  var renders = function () {
+//
+// 	requestAnimationFrame(renders);
+// 	renderer.render(scene, camera);
+// //	controls.update();
+//  };
+//
+function render() {
+	if ( controlsEnabled === true ) {
+		//获取到控制器对象
+		var control = controls.getObject();
+		//获取刷新时间
+		var delta = clock.getDelta();
+
+		//velocity每次的速度，为了保证有过渡
+		velocity.x -= velocity.x * 10.0 * delta;
+		velocity.z -= velocity.z * 10.0 * delta;
+		velocity.y -= 9.8 * 100.0 * delta; // 默认下降的速度
+
+		//获取当前按键的方向并获取朝哪个方向移动
+		direction.z = Number( moveForward ) - Number( moveBackward );
+		direction.x = Number( moveLeft ) - Number( moveRight );
+		//将法向量的值归一化
+		direction.normalize();
+
+		//？？？怎么改
+		group.position.set(control.position.x,control.position.y,control.position.z);
+
+		//判断是否接触到了模型
+		rotation.copy(control.getWorldDirection().multiply(new THREE.Vector3(-1, 0, -1)));
+
+		//判断鼠标按下的方向
+		var m = new THREE.Matrix4();
+		if(direction.z > 0){
+			if(direction.x > 0){
+				m.makeRotationY(Math.PI/4);
+			}
+			else if(direction.x < 0){
+				m.makeRotationY(-Math.PI/4);
+			}
+			else{
+				m.makeRotationY(0);
+			}
+		}
+		else if(direction.z < 0){
+			if(direction.x > 0){
+				m.makeRotationY(Math.PI/4*3);
+			}
+			else if(direction.x < 0){
+				m.makeRotationY(-Math.PI/4*3);
+			}
+			else{
+				m.makeRotationY(Math.PI);
+			}
+		}
+		else{
+			if(direction.x > 0){
+				m.makeRotationY(Math.PI/2);
+			}
+			else if(direction.x < 0){
+				m.makeRotationY(-Math.PI/2);
+			}
+		}
+		//给向量使用变换矩阵
+		rotation.applyMatrix4(m);
+
+		//horizontal.setDirection(rotation);
+		horizontalRaycaster.set( control.position , rotation );
+
+		//判断是否停在了物体上
+		var horizontalIntersections = horizontalRaycaster.intersectObjects( scene.children, true);
+		var horOnObject = horizontalIntersections.length > 0;
+
+		//判断移动方向修改速度方向
+		if(!horOnObject){
+			if ( moveForward || moveBackward ) velocity.z -= direction.z * speed * delta;
+			if ( moveLeft || moveRight ) velocity.x -= direction.x * speed * delta;
+		}
+
+		//复制相机的位置
+		downRaycaster.ray.origin.copy( control.position );
+		//获取相机靠下10的位置
+		downRaycaster.ray.origin.y -= 10;
+		//判断是否停留在了立方体上面
+		var intersections = downRaycaster.intersectObjects( scene.children, true);
+		var onObject = intersections.length > 0;
+		//判断是否停在了立方体上面
+		if ( onObject === true ) {
+			velocity.y = Math.max( 0, velocity.y );
+			canJump = true;
+		}
+
+		//根据速度值移动控制器
+		control.translateX( velocity.x * delta );
+		control.translateY( velocity.y * delta );
+		control.translateZ( velocity.z * delta );
+
+		//保证控制器的y轴在10以上
+		if ( control.position.y < 10 ) {
+			velocity.y = 0;
+			control.position.y = 10;
+			canJump = true;
+		}
+	}
+
+}
+
+ function update(){
+ 	render();
+ 	renderer.render(scene,camera);
+ 	requestAnimationFrame(update);
+ }
  
  // Function which initializes all of our city / scene elements
  function init() {

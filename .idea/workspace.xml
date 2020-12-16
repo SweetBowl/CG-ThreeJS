@@ -20,28 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/three.module.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_bk.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_dn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_ft.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_lf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_rt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/lib/skybox/meadow_up.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/assets/models/city.mtl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/assets/models/city.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/Detector.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/controls/PointerLockControls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/libs/dat.gui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/libs/stats.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/loaders/MTLLoader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/js/loaders/OBJLoader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/libs/chroma.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/lib/three.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/PointerLockControls.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/proceCityTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shootGame/shoot.html" beforeDir="false" afterPath="$PROJECT_DIR$/shootGame/shoot.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +52,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/shootGame/lib/assets/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Procedural-City-Generator-master/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -84,11 +67,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Procedural-City-Generator-master/js" />
       <recent name="$PROJECT_DIR$/shootGame/lib/assets/models" />
       <recent name="$PROJECT_DIR$/shootGame/lib/js" />
       <recent name="$PROJECT_DIR$/shootGame/lib/js/libs" />
       <recent name="$PROJECT_DIR$/shootGame/lib/js/controls" />
-      <recent name="$PROJECT_DIR$/shootGame/lib/js/loaders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/shootGame/lib" />
@@ -111,7 +94,8 @@
       <workItem from="1607244962950" duration="9173000" />
       <workItem from="1607391009034" duration="152000" />
       <workItem from="1607499044216" duration="55000" />
-      <workItem from="1607499143531" duration="15905000" />
+      <workItem from="1607499143531" duration="21969000" />
+      <workItem from="1607776431519" duration="2408000" />
     </task>
     <servers />
   </component>
@@ -131,14 +115,44 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1501" y="40" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607666318111">
+      <screen x="1440" y="0" width="1194" height="756" />
+    </state>
+    <state x="1501" y="40" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1607666318111" />
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607607237101">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1607607237101" />
+    <state x="1540" y="100" width="994" height="556" key="DiffContextDialog" timestamp="1608006855488">
+      <screen x="1440" y="0" width="1194" height="756" />
+    </state>
+    <state x="1540" y="100" width="994" height="556" key="DiffContextDialog/1440.0.1194.756/0.0.1440.900@1440.0.1194.756" timestamp="1608006855488" />
+    <state x="20" y="285" width="1132" height="733" key="dock-window-1" timestamp="1607672038238">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="20" y="285" width="1132" height="733" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1607672038238" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1607609596565" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.23.1440.877@0.23.1440.877" timestamp="1607666319957" />
     <state x="501" y="126" width="597" height="735" key="find.popup" timestamp="1606381661161">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="501" y="126" width="597" height="735" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1606381661161" />
-    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup" timestamp="1607081801997">
+    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup" timestamp="1607674852370">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="385" y="194" width="670" height="696" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607081801997" />
     <state x="385" y="214" width="670" height="676" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1606378194672" />
+    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1607674852370" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/shootGame/shoot.html</url>
+          <line>216</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
