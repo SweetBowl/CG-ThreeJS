@@ -20,12 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_bk.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_dn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_ft.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_lf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_rt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_up.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
@@ -97,6 +91,7 @@
       <workItem from="1607391009034" duration="152000" />
       <workItem from="1607499044216" duration="55000" />
       <workItem from="1607499143531" duration="3008000" />
+      <workItem from="1608115018997" duration="4363000" />
     </task>
     <servers />
   </component>
@@ -116,6 +111,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1" timestamp="1608119841560">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1608119841560" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608116617628" />
     <state x="501" y="126" width="597" height="735" key="find.popup" timestamp="1606381661161">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
