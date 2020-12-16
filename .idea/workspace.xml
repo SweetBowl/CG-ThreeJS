@@ -20,19 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Linecity_100/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/citydemo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/OrbitControls.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/generateCity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Linecity_100/js/three.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shootGame/shoot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_bk.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_dn.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_ft.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_lf.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_rt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/meadow_up.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlockPeopleDemo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/FlockPeopleDemo/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" beforeDir="false" afterPath="$PROJECT_DIR$/Procedural-City-Generator-master/js/procedural.city.generator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Skybox/js/skyboxgen.js" beforeDir="false" afterPath="$PROJECT_DIR$/Skybox/js/skyboxgen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +55,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Linecity_100/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/small_city-master/lib" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -70,19 +65,20 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.stylesheets.stylelint" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/small_city-master/lib" />
       <recent name="$PROJECT_DIR$/Linecity_100/js" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/libs" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/js" />
       <recent name="$PROJECT_DIR$/FlockPeopleDemo/css" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
