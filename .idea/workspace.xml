@@ -20,9 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/small_city-master/js/Detector.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/indexBird.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/js/TweenMax.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/js/birdflock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/js/dat.gui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/js/three.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BirdFlock/libs/Diffuse.001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/js/Bird.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/js/Flock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/js/TweenMax.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/lib/Diffuse.001.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,16 +76,27 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/BirdFlock/css" />
+      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/small_city-master/js" />
       <recent name="$PROJECT_DIR$/small_city-master/lib" />
+      <recent name="$PROJECT_DIR$/BirdFlock/js" />
+      <recent name="$PROJECT_DIR$/BirdFlock/libs" />
       <recent name="$PROJECT_DIR$/Linecity_100/js" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/libs" />
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/js" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/FlockPeopleDemo/animated" />
-    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="indexBird.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/experiment/BirdFlock/indexBird.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.indexBird.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -93,7 +114,8 @@
       <workItem from="1607391009034" duration="152000" />
       <workItem from="1607499044216" duration="55000" />
       <workItem from="1607499143531" duration="3008000" />
-      <workItem from="1608115018997" duration="8931000" />
+      <workItem from="1608115018997" duration="9036000" />
+      <workItem from="1608171490258" duration="8635000" />
     </task>
     <servers />
   </component>
@@ -113,24 +135,39 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608176572039">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608176572039" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1608121370333">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608121370333" />
-    <state x="1440" y="0" width="1194" height="756" key="dock-window-1" timestamp="1608124577615">
+    <state x="452" y="159" key="RollbackChangesDialog" timestamp="1608191237461">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="452" y="159" key="RollbackChangesDialog/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608191237461" />
+    <state width="584" height="445" key="SwitcherDM" timestamp="1608191499081">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="584" height="445" key="SwitcherDM/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608191499081" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1" timestamp="1608190195171">
       <screen x="1440" y="0" width="1194" height="756" />
     </state>
-    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1608119841560" />
-    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608124577615" />
-    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.23.1194.733/0.23.1440.877@0.23.1440.877" timestamp="1608124487552" />
-    <state x="501" y="126" width="597" height="735" key="find.popup" timestamp="1606381661161">
-      <screen x="0" y="25" width="1440" height="875" />
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.0.1440.900@0.0.1440.900" timestamp="1608125160983" />
+    <state x="0" y="0" width="1440" height="900" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1608187878381" />
+    <state x="1440" y="0" width="1194" height="756" key="dock-window-1/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608190195171" />
+    <state x="0" y="0" width="1440" height="900" maximized="true" key="dock-window-1/1440.23.1194.733/0.23.1440.877@0.23.1440.877" timestamp="1608189876560" />
+    <state x="501" y="104" width="597" height="756" key="find.popup" timestamp="1608173206285">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="501" y="126" width="597" height="735" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1606381661161" />
-    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup" timestamp="1607081801997">
+    <state x="501" y="104" width="597" height="756" key="find.popup/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608173206285" />
+    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup" timestamp="1608191652877">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="385" y="194" width="670" height="696" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1607081801997" />
     <state x="385" y="214" width="670" height="676" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1606378194672" />
+    <state x="385" y="194" width="670" height="696" key="search.everywhere.popup/1440.0.1194.756/0.0.1440.900@0.0.1440.900" timestamp="1608191652877" />
   </component>
 </project>

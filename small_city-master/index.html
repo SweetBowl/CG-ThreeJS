@@ -43,8 +43,16 @@
 			text-align: center;
 			cursor: pointer;
 		}
-
 	</style>
+<!--	<style>-->
+<!--		.viewports {-->
+<!--			position: absolute;-->
+<!--			width: 100%;-->
+<!--			height: 100%;-->
+<!--			top: 0;-->
+<!--			left: 0;-->
+<!--		}-->
+<!--	</style>-->
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -70,6 +78,8 @@
 		<canvas id="canvas"></canvas>
 	</div>
 
+<!--	<div class="viewports"></div>-->
+
 	<script src="js/jquery.min.js"></script>
 	<script src="js/three.min.js"></script>
 	<script src="js/OrbitControls.js"></script>
@@ -78,6 +88,9 @@
 	<script src="js/PointerLockControls.js"></script>
 	<script src="js/flag.js"></script>
 	<script src="js/Detector.js"></script>
+	<script src='js/Bird.js'></script>
+	<script src='js/Flock.js'></script>
+	<script src="js/TweenMax.min.js"></script>
 
 	<script>
 		'use strict';
@@ -144,21 +157,125 @@
 			for (let i = 0; i < 6; i++) {
 				materialArray[i].side = THREE.BackSide;
 			}
-			let skyboxGeo = new THREE.BoxGeometry(2500, 2500, 2500);
-			let skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
-			skybox.position.y = 0;		//height
-			skybox.position.z = -430;	//左右left right
-			skybox.position.x = -500;	//前后front back
-			scene.add(skybox);
+			// 天空盒
+			{
+				let skyboxGeo = new THREE.BoxGeometry(2300, 2300, 2300);
+				let skybox = new THREE.Mesh(skyboxGeo, materialArray);
 
-			// scene.background = new THREE.Color('#75bbfd');
+				skybox.position.y = 0;		//height
+				skybox.position.z = -430;	//左右left right
+				skybox.position.x = -500;	//前后front back
+				scene.add(skybox);
 
-			// var blocker = document.getElementsByClassName('global_wr')[0];
-			// var instructions = document.getElementById('canvas');
-			var blocker = document.getElementById( 'blocker' );
-			var instructions = document.getElementById( 'instructions' );
+				// scene.background = new THREE.Color('#75bbfd');
 
+				// var blocker = document.getElementsByClassName('global_wr')[0];
+				// var instructions = document.getElementById('canvas');
+				var blocker = document.getElementById('blocker');
+				var instructions = document.getElementById('instructions');
+
+			}
+
+			// Bird Flock
+			let birds, bird;
+			let flock, flocks;
+			let offx, offz;     //初始化不同鸟群离中心的分布位置
+			let bird_blocks, bird_instances;
+			bird_blocks = [];
+			bird_instances = [];
+			birds = [];
+			flocks = [];
+			for (let j = 0; j < 1; j++) {
+				if (j === 0){
+					offx = 0;
+					offz = 0;
+				}
+				// else if (j === 1){
+				// 	offx = 2000;
+				// 	offz = 1000;
+				// }
+				// else if (j === 2){
+				// 	offx = -1000;
+				// 	offz = 1000;
+				// }
+				// else if (j === 3){
+				// 	offx = -1000;
+				// 	offz = -5000;
+				// }
+				// else if (j === 4){
+				// 	offx = 4000;
+				// 	offz = -5000;
+				// }
+				// else if (j === 5){
+				// 	offx = 2000;
+				// 	offz = -5000;
+				// }
+				// else if (j === 6){
+				// 	offx = -1000;
+				// 	offz = -2000;
+				// }
+				// else if (j === 7){
+				// 	offx = 5000;
+				// 	offz = -2000;
+				// }
+				// else if (j === 8){
+				// 	offx = 2000;
+				// 	offz = -2000;
+				// }
+				// 可调整鸟群数量
+				for (let i = 0; i < 15; i++) {
+
+					flock = flocks[i] = new Flock();
+					flock.position.x = Math.random() * 500 + offx;
+					flock.position.y = Math.random() * 500+500;
+					flock.position.z = Math.random() * 500 + offz;
+					flock.velocity.x = Math.random() * 3000 + 1500;
+					flock.velocity.y = Math.random() * 3000 + 1500;
+					flock.velocity.z = Math.random() * 3000 + 1500;
+					flock.setAvoidWalls(true);
+					flock.setWorldSize(6000, 4000, 6000);
+
+					bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
+						color: Math.random() * 0xffffff,
+						side: THREE.DoubleSide
+					}));
+					bird.scale.set(8, 8, 8);
+					bird.phase = Math.floor(Math.random() * 62.83);
+					scene.add(bird);
+
+				}
+				bird_blocks[j] = [...flocks];
+				bird_instances[j] = [...birds];
+			}
+
+			// 鸟群动画
+			function bird_animation() {
+				let flock, flocks;
+				let bird, birds;
+
+				for (let k = 0; k < bird_blocks.length; k++){
+					flocks = [...bird_blocks[k]];
+					birds = [...bird_instances[k]];
+
+					let i = 0, il = birds.length;
+					for (; i < il; i++) {
+
+						flock = flocks[i];
+						flock.run(flocks);
+
+						bird = birds[i];
+						bird.position.copy(flocks[i].position);
+
+						bird.rotation.y = Math.atan2(-flock.velocity.z, flock.velocity.x);
+						bird.rotation.z = Math.asin(flock.velocity.y / flock.velocity.length());
+
+						bird.phase = (bird.phase + (Math.max(0, bird.rotation.z) + 0.1)) % 62.83;
+						bird.geometry.vertices[5].y = bird.geometry.vertices[4].y = Math.sin(bird.phase) * 5;
+
+					}
+				}
+			}
 
 			//锁定鼠标
 			function launchFullScreen(element) {
@@ -780,8 +897,13 @@
 					}
 
 				}
+				// 鸟群动画
+				bird_animation();
+
 				requestAnimationFrame(render);
 				simulate(time*1000);
+
+				// 渲染旗帜
 				flagrender();
 				renderer.render(scene, camera);
 			}
