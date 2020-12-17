@@ -44,15 +44,6 @@
 			cursor: pointer;
 		}
 	</style>
-<!--	<style>-->
-<!--		.viewports {-->
-<!--			position: absolute;-->
-<!--			width: 100%;-->
-<!--			height: 100%;-->
-<!--			top: 0;-->
-<!--			left: 0;-->
-<!--		}-->
-<!--	</style>-->
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -78,6 +69,8 @@
 		<canvas id="canvas"></canvas>
 	</div>
 
+	<div id="stats"></div>
+
 <!--	<div class="viewports"></div>-->
 
 	<script src="js/jquery.min.js"></script>
@@ -91,6 +84,7 @@
 	<script src='js/Bird.js'></script>
 	<script src='js/Flock.js'></script>
 	<script src="js/TweenMax.min.js"></script>
+	<script src="js/stats.min.js"></script>
 
 	<script>
 		'use strict';
@@ -227,19 +221,36 @@
 				for (let i = 0; i < 15; i++) {
 
 					flock = flocks[i] = new Flock();
-					flock.position.x = Math.random() * 500 + offx;
-					flock.position.y = Math.random() * 500+500;
-					flock.position.z = Math.random() * 500 + offz;
-					flock.velocity.x = Math.random() * 3000 + 1500;
-					flock.velocity.y = Math.random() * 3000 + 1500;
-					flock.velocity.z = Math.random() * 3000 + 1500;
+					flock.position.x = Math.random() * 0.5 + offx;
+					flock.position.y = Math.random() * 0.5+500;
+					flock.position.z = Math.random() * 0.5 + offz;
+					flock.velocity.x = Math.random() * 2500 + 2000;
+					flock.velocity.y = Math.random() * 2500 + 2000;
+					flock.velocity.z = Math.random() * 2500 + 2000;
 					flock.setAvoidWalls(true);
-					flock.setWorldSize(6000, 4000, 6000);
+					flock.setWorldSize(1000,1000,3000);
 
-					bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
-						color: Math.random() * 0xffffff,
-						side: THREE.DoubleSide
-					}));
+					if(i%3==0){
+						bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
+							color: 0xE5B776,
+							side: THREE.DoubleSide
+						}));
+					}
+					else if(i%3==1)
+					{
+						bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
+							color: 0xF66D0C,
+							side: THREE.DoubleSide
+						}));
+					}
+					else if(i%3==2)
+					{
+						bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
+							color: 0x0C4EB1,
+							side: THREE.DoubleSide
+						}));
+					}
+
 					bird.scale.set(8, 8, 8);
 					bird.phase = Math.floor(Math.random() * 62.83);
 					scene.add(bird);
@@ -551,6 +562,7 @@
 				renderer.shadowMap.enabled = true;
 			}
 
+			// 生成平面
 			{
 				const planeSize = 40;
 
@@ -572,6 +584,7 @@
 				scene.add(mesh);
 			}
 
+			// 添加光照
 			{
 				const skyColor = 0xB1E1FF; // light blue
 				const groundColor = 0xB97A20; // brownish orange
@@ -581,6 +594,7 @@
 				scene.add(light);
 			}
 
+			// 添加光照
 			{
 				const color = 0xFFFFFF;
 				const intensity = .8;
@@ -602,6 +616,13 @@
 				cam.bottom = -1500;
 				scene.add(light);
 				scene.add(light.target);
+			}
+
+			// 监听性能的组件
+			{
+				var stats;
+				stats = new Stats();
+				document.body.appendChild(stats.dom);
 			}
 
 			function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
@@ -901,10 +922,14 @@
 				bird_animation();
 
 				requestAnimationFrame(render);
-				simulate(time*1000);
 
 				// 渲染旗帜
+				simulate(time*1000);
 				flagrender();
+
+				// 更新监听性能组件
+				stats.update();
+
 				renderer.render(scene, camera);
 			}
 

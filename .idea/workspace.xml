@@ -20,19 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BirdFlock/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/indexBird.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/js/TweenMax.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/js/birdflock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/js/dat.gui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/js/three.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BirdFlock/libs/Diffuse.001.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/js/Bird.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/js/Flock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/js/TweenMax.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small_city-master/lib/Diffuse.001.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/small_city-master/js/stats.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlockPeopleDemo/animated/Flocking.html" beforeDir="false" afterPath="$PROJECT_DIR$/FlockPeopleDemo/animated/Flocking.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_city-master/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/small_city-master/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +105,8 @@
       <workItem from="1607499044216" duration="55000" />
       <workItem from="1607499143531" duration="3008000" />
       <workItem from="1608115018997" duration="9036000" />
-      <workItem from="1608171490258" duration="8635000" />
+      <workItem from="1608171490258" duration="11780000" />
+      <workItem from="1608196240928" duration="59000" />
     </task>
     <servers />
   </component>
