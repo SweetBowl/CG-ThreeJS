@@ -71,8 +71,6 @@
 
 	<div id="stats"></div>
 
-<!--	<div class="viewports"></div>-->
-
 	<script src="js/jquery.min.js"></script>
 	<script src="js/three.min.js"></script>
 	<script src="js/OrbitControls.js"></script>
@@ -98,20 +96,20 @@
 				antialias: true
 			});
 
-			const fov = 45;
+			// Set camera
+			const fov = 85;
 			const aspect = window.innerWidth / window.innerHeight;
 			const near = 0.1;
 			const far = 100;
 			const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-			//camera.position.set(0, 0, 0);
 
+			// Set controls
 			const controls = new THREE.PointerLockControls(camera);
 			controls.getObject().position.y = 0;
 			controls.getObject().position.x = 70000;
 			controls.getObject().position.z = -4000;
 
-			// controls.update();
-
+			// Init scene
 			const scene = new THREE.Scene();
 
 			// SkyBox
@@ -152,7 +150,7 @@
 				materialArray[i].side = THREE.BackSide;
 			}
 
-			// 天空盒
+			// SkyBox
 			{
 				let skyboxGeo = new THREE.BoxGeometry(2300, 2300, 2300);
 				let skybox = new THREE.Mesh(skyboxGeo, materialArray);
@@ -185,39 +183,8 @@
 					offx = 0;
 					offz = 0;
 				}
-				// else if (j === 1){
-				// 	offx = 2000;
-				// 	offz = 1000;
-				// }
-				// else if (j === 2){
-				// 	offx = -1000;
-				// 	offz = 1000;
-				// }
-				// else if (j === 3){
-				// 	offx = -1000;
-				// 	offz = -5000;
-				// }
-				// else if (j === 4){
-				// 	offx = 4000;
-				// 	offz = -5000;
-				// }
-				// else if (j === 5){
-				// 	offx = 2000;
-				// 	offz = -5000;
-				// }
-				// else if (j === 6){
-				// 	offx = -1000;
-				// 	offz = -2000;
-				// }
-				// else if (j === 7){
-				// 	offx = 5000;
-				// 	offz = -2000;
-				// }
-				// else if (j === 8){
-				// 	offx = 2000;
-				// 	offz = -2000;
-				// }
-				// 可调整鸟群数量
+
+				// 调整鸟群数量
 				for (let i = 0; i < 15; i++) {
 
 					flock = flocks[i] = new Flock();
@@ -229,6 +196,8 @@
 					flock.velocity.z = Math.random() * 2500 + 2000;
 					flock.setAvoidWalls(true);
 					flock.setWorldSize(1000,1000,3000);
+
+					// Set the color of birds
 
 					if(i%3==0){
 						bird = birds[i] = new THREE.Mesh(new Bird(), new THREE.MeshBasicMaterial({
@@ -288,7 +257,7 @@
 				}
 			}
 
-			//锁定鼠标
+			// 锁定鼠标
 			function launchFullScreen(element) {
 			}
 
@@ -351,10 +320,10 @@
 				var direction = new THREE.Vector3(); //移动的方向变量
 				var rotation = new THREE.Vector3(); //当前的相机朝向
 
-				var speed = 3000; //控制器移动速度
-				var upSpeed = 200; //控制跳起时的速度
+				var speed = 1000; //控制器移动速度
+				var upSpeed = 300; //控制跳起时的速度
 
-				//辅助箭头
+				// 辅助箭头
 				var up, horizontal, down, group;
 
 
@@ -421,10 +390,9 @@
 				group.add(down);
 			}
 
-			// 旗帜
+			// Flags
 			{
 				// cloth material
-
 				const loader = new THREE.TextureLoader();
 				const clothTexture1 = loader.load('img/yang.jpg');
 				const clothTexture2 = loader.load('img/lan.jpg');
@@ -454,7 +422,7 @@
 
 				clothGeometry = new THREE.ParametricBufferGeometry(clothFunction, cloth.w, cloth.h);
 
-				var x = 550;
+				var x = -600;
 				var y = 200; // 高度
 				var z = -400; // 左
 				// 设置旗帜1位置
@@ -562,7 +530,7 @@
 				renderer.shadowMap.enabled = true;
 			}
 
-			// 生成平面
+			// Generate the plane
 			{
 				const planeSize = 40;
 
@@ -584,7 +552,7 @@
 				scene.add(mesh);
 			}
 
-			// 添加光照
+			// Add Light
 			{
 				const skyColor = 0xB1E1FF; // light blue
 				const groundColor = 0xB97A20; // brownish orange
@@ -594,7 +562,7 @@
 				scene.add(light);
 			}
 
-			// 添加光照
+			// Add Light
 			{
 				const color = 0xFFFFFF;
 				const intensity = .8;

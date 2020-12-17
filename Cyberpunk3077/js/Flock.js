@@ -69,12 +69,6 @@ const Flock = function () {
             _acceleration.add(vector);
 
         }
-        /* else {
-
-        						this.checkBounds();
-
-        					}
-        					*/
 
         if (Math.random() > 0.5) {
 
@@ -128,8 +122,6 @@ const Flock = function () {
 
     }
 
-    //
-
     this.avoid = function (target) {
 
         var steer = new THREE.Vector3();
@@ -161,8 +153,6 @@ const Flock = function () {
             count = 0;
 
         for (var i = 0, il = boids.length; i < il; i++) {
-
-            //if (Math.random() > 0.2) continue;
 
             boid = boids[i];
 
@@ -245,8 +235,6 @@ const Flock = function () {
             repulse = new THREE.Vector3();
 
         for (var i = 0, il = boids.length; i < il; i++) {
-
-            //if (Math.random() > 0.2) continue;
 
             boid = boids[i];
             distance = boid.position.distanceTo(this.position);
