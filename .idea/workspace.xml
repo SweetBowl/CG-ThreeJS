@@ -20,6 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dbfe5a5-c464-47f8-b9af-cb2f5aabc174" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cyberpunk3077/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Cyberpunk3077/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +105,12 @@
       <workItem from="1607499143531" duration="3008000" />
       <workItem from="1608115018997" duration="9036000" />
       <workItem from="1608171490258" duration="11780000" />
-      <workItem from="1608196240928" duration="1375000" />
+      <workItem from="1608196240928" duration="1438000" />
+      <workItem from="1608198451577" duration="101000" />
+      <workItem from="1608271706919" duration="809000" />
+      <workItem from="1608293690539" duration="52000" />
+      <workItem from="1608303451576" duration="703000" />
+      <workItem from="1608346179805" duration="131000" />
     </task>
     <servers />
   </component>
